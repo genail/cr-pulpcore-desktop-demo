@@ -30,7 +30,7 @@
         <dependency>
             <groupId>pl.graniec</groupId>
             <artifactId>cr-pulpcore-desktop</artifactId>
-            <version>0.3-SNAPSHOT</version>
+            <version>0.3</version>
         </dependency>
     
         <!-- JUnit -->
