@@ -31,7 +31,7 @@ package pl.graniec.coralreef.pulpcore.desktop.demos.helloworld;
 import java.util.HashMap;
 import java.util.Map;
 
-import pl.graniec.pulpcore.desktop.CoreApplication;
+import pl.graniec.coralreef.pulpcore.desktop.CoreApplication;
 
 /**
  * @author Piotr Korzuszek <piotr.korzuszek@gmail.com>
