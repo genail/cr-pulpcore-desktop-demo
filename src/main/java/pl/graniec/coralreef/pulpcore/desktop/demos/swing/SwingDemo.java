@@ -26,45 +26,62 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package pl.graniec.coralreef.pulpcore.desktop.demos.helloworld;
+package pl.graniec.coralreef.pulpcore.desktop.demos.swing;
 
-import static pulpcore.image.Colors.BLACK;
-import pl.graniec.pulpcore.desktop.CoreApplication;
-import pulpcore.Stage;
-import pulpcore.image.CoreFont;
-import pulpcore.scene.Scene2D;
-import pulpcore.sprite.FilledSprite;
-import pulpcore.sprite.Label;
+import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.BoxLayout;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+import pl.graniec.coralreef.pulpcore.desktop.CoreApplication;
+import pl.graniec.coralreef.pulpcore.desktop.CoreDisplayPanel;
 
 /**
  * @author Piotr Korzuszek <piotr.korzuszek@gmail.com>
  *
  */
-public class HelloWorldScene extends Scene2D {
+public class SwingDemo extends JFrame {
 	
-	CoreFont textFont = CoreFont.getSystemFont().tint(0xFFFFFFFF);
-	Label helloWorldLabel;
+	private static final long serialVersionUID = 1L;
+
+	/** Instance for first scene to access this object */
+	static SwingDemo instance;
 	
-	@Override
-	public void load() {
-		// creates 'Hello World' label in the center
-		helloWorldLabel = new Label(textFont, "Hello World", 320, 240);
-		helloWorldLabel.anchorX.set(0.5);
-		helloWorldLabel.anchorY.set(0.5);
+	/** PulpCore display panel */
+	final CoreDisplayPanel panel = new CoreDisplayPanel();
+	/** Input for fun :-) */
+	final JTextField input = new JTextField("Try to change this :-)");
+	
+	public SwingDemo() {
+		super();
+		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+		setSize(800, 600);
 		
+		panel.setPreferredSize(new Dimension(640, 480));
 		
-		// add background
-		add(new FilledSprite(BLACK));
-		// and the label
-		add(helloWorldLabel);
+		add(panel);
+		add(input);
 	}
 	
-	/*
-	 * @see pulpcore.scene.Scene2D#update(int)
-	 */
-	@Override
-	public void update(int elapsedTime) {
-		helloWorldLabel.x.set(Stage.getWidth()/2);
-		helloWorldLabel.y.set(Stage.getHeight()/2);
+	public static void main(String[] args) {
+		final SwingDemo demoWindow = new SwingDemo();
+		SwingDemo.instance = demoWindow;
+		
+		demoWindow.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
+
+		demoWindow.setVisible(true);
+		
+		final CoreApplication coreApp = new CoreApplication(SwingScene.class, demoWindow.panel);
+		coreApp.run();
+		
 	}
+	
 }

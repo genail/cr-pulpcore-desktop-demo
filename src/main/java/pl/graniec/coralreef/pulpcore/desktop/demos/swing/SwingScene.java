@@ -26,21 +26,27 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package pl.graniec.coralreef.pulpcore.desktop.demos.helloworld;
+package pl.graniec.coralreef.pulpcore.desktop.demos.swing;
 
 import static pulpcore.image.Colors.BLACK;
-import pl.graniec.pulpcore.desktop.CoreApplication;
+
+import java.awt.event.InputMethodEvent;
+import java.awt.event.InputMethodListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import pulpcore.Stage;
 import pulpcore.image.CoreFont;
 import pulpcore.scene.Scene2D;
 import pulpcore.sprite.FilledSprite;
 import pulpcore.sprite.Label;
+import sun.awt.im.InputMethodAdapter;
 
 /**
  * @author Piotr Korzuszek <piotr.korzuszek@gmail.com>
  *
  */
-public class HelloWorldScene extends Scene2D {
+public class SwingScene extends Scene2D {
 	
 	CoreFont textFont = CoreFont.getSystemFont().tint(0xFFFFFFFF);
 	Label helloWorldLabel;
@@ -48,7 +54,7 @@ public class HelloWorldScene extends Scene2D {
 	@Override
 	public void load() {
 		// creates 'Hello World' label in the center
-		helloWorldLabel = new Label(textFont, "Hello World", 320, 240);
+		helloWorldLabel = new Label(textFont, SwingDemo.instance.input.getText(), 320, 240);
 		helloWorldLabel.anchorX.set(0.5);
 		helloWorldLabel.anchorY.set(0.5);
 		
@@ -57,6 +63,14 @@ public class HelloWorldScene extends Scene2D {
 		add(new FilledSprite(BLACK));
 		// and the label
 		add(helloWorldLabel);
+		
+		// listen for swing input
+		SwingDemo.instance.input.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				helloWorldLabel.setText(SwingDemo.instance.input.getText());
+			}
+		});
 	}
 	
 	/*
