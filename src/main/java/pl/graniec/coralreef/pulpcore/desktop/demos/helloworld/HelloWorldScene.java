@@ -29,7 +29,6 @@
 package pl.graniec.coralreef.pulpcore.desktop.demos.helloworld;
 
 import static pulpcore.image.Colors.BLACK;
-import pl.graniec.pulpcore.desktop.CoreApplication;
 import pulpcore.Stage;
 import pulpcore.image.CoreFont;
 import pulpcore.scene.Scene2D;

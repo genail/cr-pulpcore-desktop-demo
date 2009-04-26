@@ -28,9 +28,6 @@
  */
 package pl.graniec.coralreef.pulpcore.desktop.demos.helloworld;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import pl.graniec.coralreef.pulpcore.desktop.CoreApplication;
 
 /**
@@ -41,19 +38,13 @@ public class HelloWorld {
 
 	public static void main(String[] args) {
 		
-		// When PulpCore is run as a applet it can receive parameters from
-		// browser (key => value) that is runs in. Params of application is
-		// something little different so you have a free choice what you want
-		// to pass further.
-		final Map<String, String> properties = new HashMap<String, String>();
+		// The simplest way to create a PulpCore desktop application is to
+		// make a instance of CoreApplication with first scene class as a
+		// parameter
+		final CoreApplication app = new CoreApplication(HelloWorldScene.class);
 		
-		// Most important parameter that should be set is first scene class.
-		// This is the only thing you should do before PulpCore will run
-		// on your desktop.
-		properties.put(CoreApplication.FIRST_SCENE_CLASS_PROPERTY, HelloWorldScene.class.getName());
-		
-		// This will finally run the PulpCore!
-		new CoreApplication(properties).run();
+		// Then just run it. That's all!
+		app.run();
 	}
 
 }
