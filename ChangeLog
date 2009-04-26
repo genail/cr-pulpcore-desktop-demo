@@ -1,2 +1,9 @@
+0.3:
+- Created Clock demo in fullscreen
+- automatic deployment of jnlp-s
+
+0.2:
+- Created Swing demo
+
 0.1:
 - Created HelloWorld demo
